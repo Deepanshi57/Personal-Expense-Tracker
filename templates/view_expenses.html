@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Expenses</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- 🔹 NEW: Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Your Expenses</h2>
+
+    <!-- 🔹 NEW: FILTER SECTION -->
+    <div style="margin-bottom: 20px;">
+        <label>Category:</label>
+        <input type="text" id="categoryFilter" placeholder="e.g. Food">
+
+        <label>From:</label>
+        <input type="date" id="fromDate">
+
+        <label>To:</label>
+        <input type="date" id="toDate">
+
+        <button onclick="applyFilters()">Apply Filter</button>
+    </div>
+
+    {% if expenses %}
+    <table id="expenseTable">
+        <tr>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+        {% for amount, category, date in expenses %}
+        <tr>
+            <td>{{ amount }}</td>
+            <td>{{ category }}</td>
+            <td>{{ date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No expenses recorded yet.</p>
+    {% endif %}
+
+    <!-- 🔹 NEW: BAR CHART -->
+    <h3 style="margin-top: 40px;">Monthly Expense Overview</h3>
+    <div style="width: 500px; margin: auto;">
+        <canvas id="monthlyChart" style="max-height:300px;></canvas>
+    </div>
+
+    <br>
+    <button onclick="location.href='/'">Back to Dashboard</button>
+</div>
+
+<!-- 🔹 NEW: FILTER SCRIPT -->
+<script>
+function applyFilters() {
+    const category = document.getElementById("categoryFilter").value.toLowerCase();
+    const fromDate = document.getElementById("fromDate").value;
+    const toDate = document.getElementById("toDate").value;
+
+    const rows = document.querySelectorAll("#expenseTable tr:not(:first-child)");
+
+    rows.forEach(row => {
+        const cells = row.children;
+        const rowCategory = cells[1].innerText.toLowerCase();
+        const rowDate = cells[2].innerText;
+
+        let show = true;
+
+        if (category && !rowCategory.includes(category)) show = false;
+        if (fromDate && rowDate < fromDate) show = false;
+        if (toDate && rowDate > toDate) show = false;
+
+        row.style.display = show ? "" : "none";
+    });
+}
+</script>
+
+<!-- 🔹 NEW: BAR CHART SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+fetch("/chart-data")
+  .then(res => res.json())
+  .then(data => {
+
+    // 🔵 PIE CHART (Category wise)
+    const pieCtx = document.getElementById("monthlyChart").getContext("2d");
+
+    new Chart(pieCtx, {
+      type: "pie",
+      data: {
+        labels: data.categories,
+        datasets: [{
+          label: "Expenses by Category",
+          data: data.category_amounts
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .admin-card {
+            max-width: 450px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .admin-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .admin-card p {
+            font-size: 45px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .user-table {
+            width: 70%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .user-table th, .user-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .user-table th {
+            background: #0066cc;
+            color: white;
+        }
+
+        .user-table tr:hover {
+            background: #f1f1f1;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-card">
+        <h2>Your Total Registered Users Are:</h2>
+        <p>{{ total_users }}</p>
+    </div>
+
+    <h3>All Registered Users</h3>
+
+    <table class="user-table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+
+        {% for user in users_list %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

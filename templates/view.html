@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Expenses</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+
+<div class="container">
+    <h2>Your Expenses</h2>
+
+    {% if expenses %}
+        {% for exp in expenses %}
+            <div style="margin-bottom: 15px; padding: 10px; background: #e9ecef; border-radius: 5px;">
+                <strong>{{ exp.title }}</strong>  
+                <br> ₹ {{ exp.amount }}  
+                <br> Category: {{ exp.category }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No expenses found.</p>
+    {% endif %}
+
+    <p><a href="/dashboard">Back</a></p>
+</div>
+<script>
+    const btn = document.getElementById("themeToggle");
+
+    btn.onclick = () => {
+        document.body.classList.toggle("dark");
+        document.body.classList.toggle("light");
+    };
+</script>
+
+</body>
+</html>

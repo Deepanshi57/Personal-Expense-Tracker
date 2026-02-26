@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Sign Up</button>
+
+        <p style="color: white;">Already have an account? <a href="/login">Login</a></p>
+    </form>
+</div>
+<script>
+    const btn = document.getElementById("themeToggle");
+
+    btn.onclick = () => {
+        document.body.classList.toggle("dark");
+        document.body.classList.toggle("light");
+    };
+</script>
+
+
+</body>
+</html>

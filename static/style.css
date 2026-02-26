@@ -1,0 +1,177 @@
+/* -------- Background & Global Styles -------- */
+body {
+    font-family: Poppins, Arial, sans-serif;
+    background: linear-gradient(135deg, #1f59d7, #25f1fc);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* -------- Navigation Bar -------- */
+.navbar {
+    background: #001f4d;
+    color: rgb(227, 210, 23);
+    padding: 14px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* -------- Main Container -------- */
+.container {
+    max-width: 650px;
+    margin: 60px auto;
+    background: #001f4d;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    color:rgb(9, 9, 9);
+    backdrop-filter: blur(8px);
+}
+
+/* -------- Headings -------- */
+h2, h3 {
+    color: #0c0c0ce0;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* -------- Labels -------- */
+label {
+    display: block;
+    margin-top: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+/* -------- Input Fields -------- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"] {
+    width: 95% !important;
+    padding: 12px 15px !important;
+    margin-top: 6px !important;
+    border: 2px solid #1d63d4 !important;   /* Dark Blue Border */
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    color: black !important;                /* 🔥 Text Inside Input = BLACK */
+    background: #fff !important;         /* Solid white background */
+    transition: 0.3s !important;
+}
+
+/* On Focus */
+input:focus {
+    border-color: #004aad !important;
+    box-shadow: 0 0 6px rgba(0, 90, 255, 0.4) !important;
+    outline: none !important;
+}
+
+/* -------- Buttons -------- */
+button {
+    width: 100%;
+    background: #4da6ff;
+    color: white;
+    padding: 12px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1c7ed6;
+}
+
+/* -------- Table Styling -------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background: #4da6ff;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-size: 15px;
+}
+
+td {
+    background: #e6f2ff;
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover td {
+    background: #d4e6ff;
+}
+.moving-text {
+    display: inline-block;
+    animation: fullMove 15s linear infinite alternate;
+    white-space: nowrap;
+    position: relative;
+}
+
+@keyframes fullMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw - 100%)); }
+}
+/* Default: Light Mode */
+body.light {
+    background: #f7f7f7;
+    color: #000;
+}
+
+/* Dark Mode */
+body.dark {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+/* Container light/dark */
+body.dark .container {
+    background: #2b2b2b;
+    color: #fff;
+}
+
+/* Navbar dark */
+body.dark .navbar {
+    background: #000;
+}
+
+/* Table dark */
+body.dark table {
+    background: #333;
+    color: #fff;
+}
+
+body.dark th, body.dark td {
+    border-color: #555;
+}
+/* ---- Logout text red ---- */
+.navbar a.logout {
+    color: red !important;
+    font-weight: 700;
+}
+
+/* ---- Recent Expenses heading white ---- */
+h3 {
+    color: white !important;
+}
+
+/* ---- Welcome, nidhann text white ---- */
+h2 {
+    color: white !important;
+}
+
+
+
